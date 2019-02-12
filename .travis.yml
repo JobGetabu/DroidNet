@@ -40,10 +40,11 @@ notifications:
   
 before_install:
  - chmod +x gradlew
+ - yes | sdkmanager "platforms;android-28"
 
 before_script:
     # Prepare pre-accepted licenses to not be promted at installation
     - mkdir -p "$ANDROID_HOME/licenses"
     - cp ./licenses/* "$ANDROID_HOME/licenses/"
 script:
-    - ./gradlew build check
+    - ./gradlew build check --stacktrace  --info
