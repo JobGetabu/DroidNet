@@ -47,4 +47,4 @@ before_script:
     - mkdir -p "$ANDROID_HOME/licenses"
     - cp ./licenses/* "$ANDROID_HOME/licenses/"
 script:
-    - ./gradlew build check --stacktrace  --info
+    - ./gradlew build clean --stacktrace --info
