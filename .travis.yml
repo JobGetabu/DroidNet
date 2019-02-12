@@ -1,48 +1,45 @@
 language: android
-sudo: required # toggle sudo mode (should be a bit faster)
+env:
+ global:
+ - ANDROID_API=28
+ - EMULATOR_API=28
+ - ANDROID_BUILD_TOOLS=28.0.3
 android:
   components:
-      # The BuildTools version used by your project
-      - build-tools-27.0.3
-      # The SDK version used to compile your project
-      - android-27
-      # The SDK version used by the system image
-      - android-22
-      # The system image, to run an emulator during the tests
-      - sys-img-armeabi-v7a-android-22
+    # Uncomment the lines below if you want to
+    # use the latest revision of Android SDK Tools
+    # - tools
+    # - platform-tools
 
-# Uncomment if you are getting install timeouts
+    # The BuildTools version used by your project
+    - build-tools-$ANDROID_BUILD_TOOLS
+
+    # The SDK version used to compile your project
+    - android-$ANDROID_API
+
+    # Additional components
+    # - extra-google-google_play_services
+    # - extra-google-m2repository
+    # - extra-android-m2repository
+
+    # Specify at least one system image,
+    # if you need to run emulator(s) during your tests
+    - sys-img-x86-android-$ANDROID_API
+    # - sys-img-armeabi-v7a-android-17
+  licenses:
+    - android-sdk-preview-license-.+
+    - android-sdk-license-.+
+    - google-gdk-license-.+
+    
 env:
   global:
     - ADB_INSTALL_TIMEOUT=8
 
 notifications:
   email: false # disable email notifications
-
-# For some reason Travis can't accept the license for 27 automatically...
+  
 before_install:
-- yes | sdkmanager "platforms;android-27"
-- chmod +x gradlew
-
-before_script:
-  # Emulator Management: Create, Start and Wait: put the android version you chose for the emulator
-  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
-  - emulator -avd test -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell settings put global window_animation_scale 0 &
-  - adb shell settings put global transition animation_scale 0 &
-  - adb shell settings put global animator_duration_scale 0 &
-  # Set up Code Climate test reporter
-  - adb shell input keyevent 82 &
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+ - chmod +x gradlew
 
 script:
-  - travis_retry ./gradlew connectedCheck jacocoTestReport --info
-
-after_script:
-  # Report test coverage to Code Climate
-  - export JACOCO_SOURCE_PATH=app/src/main/java/
-  - ./cc-test-reporter format-coverage ./app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml --input-type jacoco
-  - ./cc-test-reporter upload-coverage
+- "./gradlew clean build test --stacktrace"
