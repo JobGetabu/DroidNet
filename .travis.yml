@@ -72,7 +72,7 @@ deploy:
   skip_cleanup: true
 
   on:
-    repo: harmittaa/travis-example-android
+    repo: JobGetabu/DroidNet
     tags: true
     jdk: oraclejdk8
   api_key:
