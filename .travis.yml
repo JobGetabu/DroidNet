@@ -1,40 +1,48 @@
-language : android
-sudo : required
-jdk : oraclejdk8
+language: android
+sudo: required # toggle sudo mode (should be a bit faster)
+android:
+  components:
+      # The BuildTools version used by your project
+      - build-tools-27.0.3
+      # The SDK version used to compile your project
+      - android-27
+      # The SDK version used by the system image
+      - android-22
+      # The system image, to run an emulator during the tests
+      - sys-img-armeabi-v7a-android-22
+
+# Uncomment if you are getting install timeouts
 env:
-  global :
-    - ANROID_API_LEVEL = 28
-    - ANDROID_BUILD_TOOLS_VERSION = 28.0.3
-android :
-  components :
-   - tools # to get the new `repository-11.xml`
-    - tools # see https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
-    - platform-tools
-    - build-tools-28.0.3
-    - android-28 # your app's target api level
-    - android-19 # your emulator's api level
-    - android-21
-    - extra-android-m2repository
-    - extra-google-m2repository
-    - extra-google-google_play_services
-    - addon-google_apis-google-28
-    - sys-img-armeabi-v7a-android-22
-  licences :
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
-before_script :
-        - mkdir -p "$ANDROID_HOME/licenses"
-        - cp ./licenses/* "$ANDROID_HOME/licenses"
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-cache:
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache
-script :
-    - ./gradlew build check
+  global:
+    - ADB_INSTALL_TIMEOUT=8
+
+notifications:
+  email: false # disable email notifications
+
+# For some reason Travis can't accept the license for 27 automatically...
 before_install:
+- yes | sdkmanager "platforms;android-27"
 - chmod +x gradlew
+
+before_script:
+  # Emulator Management: Create, Start and Wait: put the android version you chose for the emulator
+  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - emulator -avd test -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell settings put global window_animation_scale 0 &
+  - adb shell settings put global transition animation_scale 0 &
+  - adb shell settings put global animator_duration_scale 0 &
+  # Set up Code Climate test reporter
+  - adb shell input keyevent 82 &
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script:
+  - travis_retry ./gradlew connectedCheck jacocoTestReport --info
+
+after_script:
+  # Report test coverage to Code Climate
+  - export JACOCO_SOURCE_PATH=app/src/main/java/
+  - ./cc-test-reporter format-coverage ./app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml --input-type jacoco
+  - ./cc-test-reporter upload-coverage
