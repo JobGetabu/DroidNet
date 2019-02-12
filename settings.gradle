@@ -1,1 +1,1 @@
-include ':app', ':internetavailabilitychecker', ':droidnet'
+include ':app', ':droidnet'
