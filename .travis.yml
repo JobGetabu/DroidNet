@@ -31,6 +31,13 @@ android:
     - android-sdk-license-.+
     - google-gdk-license-.+
     
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=8
+
+notifications:
+  email: false # disable email notifications
+  
 before_install:
  - chmod +x gradlew
 
