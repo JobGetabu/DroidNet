@@ -44,6 +44,6 @@ before_install:
 before_script:
     # Prepare pre-accepted licenses to not be promted at installation
     - mkdir -p "$ANDROID_HOME/licenses"
-    - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
+    - cp ./licenses/* "$ANDROID_HOME/licenses/"
 script:
     - ./gradlew build check
