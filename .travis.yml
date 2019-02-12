@@ -1,4 +1,5 @@
 language: android
+sudo: required # toggle sudo mode (should be a bit faster)
 env:
  global:
  - ANDROID_API=28
