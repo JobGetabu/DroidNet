@@ -1,4 +1,3 @@
-	
 language : android
 sudo : required
 jdk : oraclejdk8
