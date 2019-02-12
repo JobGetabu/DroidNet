@@ -1,50 +1,38 @@
 language: android
+jdk: oraclejdk8
+
+before_cache:
+  # Do not cache a few Gradle files/directories (see https://docs.travis-ci.com/user/languages/java/#Caching)
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+    # Android SDK
+    - $HOME/android-sdk-dl
+    - $HOME/android-sdk
+
+    # Gradle dependencies
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+    # Android build cache (see http://tools.android.com/tech-docs/build-cache)
+    - $HOME/.android/build-cache
+
+install:
+  # Download and unzip the Android SDK tools (if not already there thanks to the cache mechanism)
+  # Latest version available here: https://developer.android.com/studio/#command-tools
+  - if test ! -e $HOME/android-sdk-dl/sdk-tools.zip ; then curl https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip > $HOME/android-sdk-dl/sdk-tools.zip ; fi
+  - unzip -qq -n $HOME/android-sdk-dl/sdk-tools.zip -d $HOME/android-sdk
+
+  # Install or update Android SDK components (will not do anything if already up to date thanks to the cache mechanism)
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'tools' > /dev/null
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'platform-tools' > /dev/null
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'build-tools;27.0.3' > /dev/null
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'platforms;android-27' > /dev/null
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;google;m2repository' > /dev/null
+
 env:
- global:
- - ANDROID_API=28
- - EMULATOR_API=28
- - ANDROID_BUILD_TOOLS=28.0.3
-android:
-  components:
-    # Uncomment the lines below if you want to
-    # use the latest revision of Android SDK Tools
-    # - tools
-    # - platform-tools
+  - ANDROID_HOME=$HOME/android-sdk
 
-    # The BuildTools version used by your project
-    - build-tools-$ANDROID_BUILD_TOOLS
-
-    # The SDK version used to compile your project
-    - android-$ANDROID_API
-
-    # Additional components
-    # - extra-google-google_play_services
-    # - extra-google-m2repository
-    # - extra-android-m2repository
-
-    # Specify at least one system image,
-    # if you need to run emulator(s) during your tests
-    - sys-img-x86-android-$ANDROID_API
-    # - sys-img-armeabi-v7a-android-17
-  licenses:
-    - android-sdk-preview-license-.+
-    - android-sdk-license-.+
-    - google-gdk-license-.+
-    
-env:
-  global:
-    - ADB_INSTALL_TIMEOUT=8
-
-notifications:
-  email: false # disable email notifications
-  
-before_install:
- - chmod +x gradlew
- - yes | sdkmanager "platforms;android-28"
-
-before_script:
-    # Prepare pre-accepted licenses to not be promted at installation
-    - mkdir -p "$ANDROID_HOME/licenses"
-    - cp ./licenses/* "$ANDROID_HOME/licenses/"
-script:
-    - ./gradlew build clean --stacktrace --info
+script: ./gradlew --no-daemon --parallel lintDebug testDebug
