@@ -1,5 +1,4 @@
 language: android
-sudo: required # toggle sudo mode (should be a bit faster)
 env:
  global:
  - ANDROID_API=28
@@ -47,4 +46,4 @@ before_install:
   - echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > "$ANDROID_HOME/licenses/android-sdk-license"
 
 script:
-- ./gradlew build check
+- gradlew clean build
