@@ -1,6 +1,8 @@
-package com.droidnet;
+package com.droidapp;
 
 import android.app.Application;
+
+import com.droidnet.InternetAvailabilityChecker;
 
 /**
  * Created by aa on 29/04/17.
