@@ -33,6 +33,14 @@ public class MainActivity extends AppCompatActivity implements DroidListener {
 
         mDroidNet = DroidNet.getInstance();
         mDroidNet.addInternetConnectivityListener(this);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txt.setText("...");
+                recreate();
+            }
+        });
     }
 
     @Override
