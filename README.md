@@ -67,11 +67,7 @@ import com.droidnet.DroidNet;
 
 public class MainActivity extends AppCompatActivity implements DroidListener {
 
-    private ConstraintLayout main;
-    private MaterialButton btn;
-    private TextView txt;
-    private View vm;
-    private boolean isConnected;
+    //...
 
     private DroidNet mDroidNet;
 
