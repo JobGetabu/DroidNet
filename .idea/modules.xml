@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/DroidNet.iml" filepath="$PROJECT_DIR$/DroidNet.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/droidnet/droidnet.iml" filepath="$PROJECT_DIR$/droidnet/droidnet.iml" />
-      <module fileurl="file://$PROJECT_DIR$/internetavailabilitychecker/internetavailabilitychecker.iml" filepath="$PROJECT_DIR$/internetavailabilitychecker/internetavailabilitychecker.iml" />
     </modules>
   </component>
 </project>

@@ -5,14 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-import com.droidnet.InternetAvailabilityChecker;
+import com.droidnet.DroidNet;
 import com.droidnet.InternetConnectivityListener;
 
 
 public class Main2Activity extends AppCompatActivity implements InternetConnectivityListener {
 
     private TextView mTvStatus;
-    private InternetAvailabilityChecker mInternetAvailabilityChecker;
+    private DroidNet mDroidNet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +23,14 @@ public class Main2Activity extends AppCompatActivity implements InternetConnecti
 
         mTvStatus = findViewById(R.id.tv_status);
 
-        mInternetAvailabilityChecker = InternetAvailabilityChecker.getInstance();
-        mInternetAvailabilityChecker.addInternetConnectivityListener(this);
+        mDroidNet = DroidNet.getInstance();
+        mDroidNet.addInternetConnectivityListener(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mInternetAvailabilityChecker.removeInternetConnectivityChangeListener(this);
+        mDroidNet.removeInternetConnectivityChangeListener(this);
     }
 
     @Override

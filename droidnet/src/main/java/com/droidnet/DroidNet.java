@@ -31,10 +31,10 @@ import java.util.List;
  * Created by aa on 29/04/17.
  */
 
-public final class InternetAvailabilityChecker implements NetworkChangeReceiver.NetworkChangeListener {
+public final class DroidNet implements NetworkChangeReceiver.NetworkChangeListener {
 
     private static final Object LOCK = new Object();
-    private static volatile InternetAvailabilityChecker sInstance;
+    private static volatile DroidNet sInstance;
 
     private WeakReference<Context> mContextWeakReference;
     private List<WeakReference<InternetConnectivityListener>> mInternetConnectivityListenersWeakReferences;
@@ -46,7 +46,7 @@ public final class InternetAvailabilityChecker implements NetworkChangeReceiver.
 
     private static final String CONNECTIVITY_CHANGE_INTENT_ACTION = "android.net.conn.CONNECTIVITY_CHANGE";
 
-    private InternetAvailabilityChecker(Context context) {
+    private DroidNet(Context context) {
         Context appContext = context.getApplicationContext();
         mContextWeakReference = new WeakReference<>(appContext);
         mInternetConnectivityListenersWeakReferences = new ArrayList<>();
@@ -58,7 +58,7 @@ public final class InternetAvailabilityChecker implements NetworkChangeReceiver.
      * @param context need to register for Connectivity broadcast
      * @return instance of InternetConnectivityHelper
      */
-    public static InternetAvailabilityChecker init(Context context) {
+    public static DroidNet init(Context context) {
         if (context == null) {
             throw new NullPointerException("context can not be null");
         }
@@ -66,14 +66,14 @@ public final class InternetAvailabilityChecker implements NetworkChangeReceiver.
         if (sInstance == null) {
             synchronized (LOCK) {
                 if (sInstance == null) {
-                    sInstance = new InternetAvailabilityChecker(context);
+                    sInstance = new DroidNet(context);
                 }
             }
         }
         return sInstance;
     }
 
-    public static InternetAvailabilityChecker getInstance() {
+    public static DroidNet getInstance() {
         if (sInstance == null) {
             throw new IllegalStateException("call init(Context) in your application class before calling getInstance()");
         }
@@ -81,7 +81,7 @@ public final class InternetAvailabilityChecker implements NetworkChangeReceiver.
     }
 
     /**
-     * Sdd InternetConnectivityListener only if it's not added. It keeps a weak reference to the listener.
+     * Add InternetConnectivityListener only if it's not added. It keeps a weak reference to the listener.
      * So user should have a strong reference to that listener otherwise that will be garbage collected
      */
     public void addInternetConnectivityListener(InternetConnectivityListener internetConnectivityListener) {
