@@ -37,7 +37,7 @@ public final class DroidNet implements NetworkChangeReceiver.NetworkChangeListen
     private static volatile DroidNet sInstance;
 
     private WeakReference<Context> mContextWeakReference;
-    private List<WeakReference<InternetConnectivityListener>> mInternetConnectivityListenersWeakReferences;
+    private List<WeakReference<DroidListener>> mInternetConnectivityListenersWeakReferences;
     private NetworkChangeReceiver mNetworkChangeReceiver;
     private boolean mIsNetworkChangeRegistered = false;
     private boolean mIsInternetConnected = false;
@@ -81,14 +81,14 @@ public final class DroidNet implements NetworkChangeReceiver.NetworkChangeListen
     }
 
     /**
-     * Add InternetConnectivityListener only if it's not added. It keeps a weak reference to the listener.
+     * Add DroidListener only if it's not added. It keeps a weak reference to the listener.
      * So user should have a strong reference to that listener otherwise that will be garbage collected
      */
-    public void addInternetConnectivityListener(InternetConnectivityListener internetConnectivityListener) {
-        if (internetConnectivityListener == null) {
+    public void addInternetConnectivityListener(DroidListener droidListener) {
+        if (droidListener == null) {
             return;
         }
-        mInternetConnectivityListenersWeakReferences.add(new WeakReference<>(internetConnectivityListener));
+        mInternetConnectivityListenersWeakReferences.add(new WeakReference<>(droidListener));
         if (mInternetConnectivityListenersWeakReferences.size() == 1) {
             registerNetworkChangeReceiver();
             return;
@@ -99,8 +99,8 @@ public final class DroidNet implements NetworkChangeReceiver.NetworkChangeListen
     /**
      * remove the weak reference to the listener
      */
-    public void removeInternetConnectivityChangeListener(InternetConnectivityListener internetConnectivityListener) {
-        if (internetConnectivityListener == null) {
+    public void removeInternetConnectivityChangeListener(DroidListener droidListener) {
+        if (droidListener == null) {
             return;
         }
 
@@ -108,18 +108,18 @@ public final class DroidNet implements NetworkChangeReceiver.NetworkChangeListen
             return;
         }
 
-        Iterator<WeakReference<InternetConnectivityListener>> iterator = mInternetConnectivityListenersWeakReferences.iterator();
+        Iterator<WeakReference<DroidListener>> iterator = mInternetConnectivityListenersWeakReferences.iterator();
         while (iterator.hasNext()) {
 
             //if weak reference is null then remove it from iterator
-            WeakReference<InternetConnectivityListener> reference = iterator.next();
+            WeakReference<DroidListener> reference = iterator.next();
             if (reference == null) {
                 iterator.remove();
                 continue;
             }
 
             //if listener referenced by this weak reference is garbage collected then remove it from iterator
-            InternetConnectivityListener listener = reference.get();
+            DroidListener listener = reference.get();
             if (listener == null) {
                 reference.clear();
                 iterator.remove();
@@ -127,7 +127,7 @@ public final class DroidNet implements NetworkChangeReceiver.NetworkChangeListen
             }
 
             //if listener to be removed is found then remove it
-            if (listener == internetConnectivityListener) {
+            if (listener == droidListener) {
                 reference.clear();
                 iterator.remove();
                 break;
@@ -145,9 +145,9 @@ public final class DroidNet implements NetworkChangeReceiver.NetworkChangeListen
             return;
         }
 
-        Iterator<WeakReference<InternetConnectivityListener>> iterator = mInternetConnectivityListenersWeakReferences.iterator();
+        Iterator<WeakReference<DroidListener>> iterator = mInternetConnectivityListenersWeakReferences.iterator();
         while (iterator.hasNext()) {
-            WeakReference<InternetConnectivityListener> reference = iterator.next();
+            WeakReference<DroidListener> reference = iterator.next();
             if (reference != null) {
                 reference.clear();
             }
@@ -209,16 +209,16 @@ public final class DroidNet implements NetworkChangeReceiver.NetworkChangeListen
             return;
         }
 
-        Iterator<WeakReference<InternetConnectivityListener>> iterator = mInternetConnectivityListenersWeakReferences.iterator();
+        Iterator<WeakReference<DroidListener>> iterator = mInternetConnectivityListenersWeakReferences.iterator();
         while (iterator.hasNext()) {
-            WeakReference<InternetConnectivityListener> reference = iterator.next();
+            WeakReference<DroidListener> reference = iterator.next();
 
             if (reference == null) {
                 iterator.remove();
                 continue;
             }
 
-            InternetConnectivityListener listener = reference.get();
+            DroidListener listener = reference.get();
             if (listener == null) {
                 iterator.remove();
                 continue;

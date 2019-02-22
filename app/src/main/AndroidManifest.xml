@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppTheme.TransparentTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name="com.droidapp.MainActivity">
             <intent-filter>
@@ -20,6 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name="com.droidapp.Main2Activity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

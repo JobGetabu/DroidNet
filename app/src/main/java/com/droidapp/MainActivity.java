@@ -1,35 +1,35 @@
 package com.droidapp;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.TextView;
 
+import com.droidnet.DroidListener;
 import com.droidnet.DroidNet;
-import com.droidnet.InternetConnectivityListener;
+import com.google.android.material.button.MaterialButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
-public class MainActivity extends AppCompatActivity implements InternetConnectivityListener {
+public class MainActivity extends AppCompatActivity implements DroidListener {
 
-    private TextView mTvStatus;
+    private ConstraintLayout main;
+    private MaterialButton btn;
+    private TextView txt;
+    private View vm;
+    private boolean isConnected;
+
     private DroidNet mDroidNet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-
-        mTvStatus = findViewById(R.id.tv_status);
-        findViewById(R.id.btb_open_next_activity).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Main2Activity.class));
-            }
-        });
+        main = findViewById(R.id.main_content);
+        btn = findViewById(R.id.button);
+        txt = findViewById(R.id.textView);
+        vm = findViewById(R.id.vm);
 
         mDroidNet = DroidNet.getInstance();
         mDroidNet.addInternetConnectivityListener(this);
@@ -43,10 +43,23 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
 
     @Override
     public void onInternetConnectivityChanged(boolean isConnected) {
+        this.isConnected = isConnected;
         if (isConnected) {
-            mTvStatus.setText("connected");
+            netIsOn();
         } else {
-            mTvStatus.setText("not connected");
+            netIsOff();
         }
+    }
+
+    private void netIsOn(){
+        main.setBackgroundColor(getResources().getColor(R.color.online));
+        txt.setText("Connected");
+        txt.setTextColor(getResources().getColor(R.color.green));
+    }
+
+    private void netIsOff(){
+        main.setBackgroundColor(getResources().getColor(R.color.offline));
+        txt.setTextColor(getResources().getColor(R.color.dark));
+        txt.setText("DisConnected");
     }
 }

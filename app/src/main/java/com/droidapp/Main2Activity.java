@@ -1,15 +1,15 @@
 package com.droidapp;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.droidnet.DroidListener;
 import com.droidnet.DroidNet;
-import com.droidnet.InternetConnectivityListener;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
-public class Main2Activity extends AppCompatActivity implements InternetConnectivityListener {
+public class Main2Activity extends AppCompatActivity implements DroidListener {
 
     private TextView mTvStatus;
     private DroidNet mDroidNet;
@@ -18,8 +18,6 @@ public class Main2Activity extends AppCompatActivity implements InternetConnecti
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
         mTvStatus = findViewById(R.id.tv_status);
 

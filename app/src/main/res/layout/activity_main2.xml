@@ -7,11 +7,7 @@
     android:orientation="vertical"
     tools:context="com.droidapp.Main2Activity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="Activity 2" />
+
 
     <TextView
         android:id="@+id/tv_status"

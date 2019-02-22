@@ -23,7 +23,7 @@ package com.droidnet;
  * Created by aa on 29/04/17.
  */
 
-public interface InternetConnectivityListener {
+public interface DroidListener {
 
     void onInternetConnectivityChanged(boolean isConnected);
 }
