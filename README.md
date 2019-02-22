@@ -19,7 +19,7 @@ To be able to use the following library, you will need to add the following grad
 #### build.gradle  module
 
 ```
-implementation 'com.job:droidnet:1.0.0'
+implementation 'com.job:droidnet:2.0.0'
 ```
 That is the basic set up needed to be able to use the library in your applications!
 
