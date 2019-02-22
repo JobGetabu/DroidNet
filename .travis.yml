@@ -38,4 +38,7 @@ before_install:
   - yes | sdkmanager "platforms;android-28"
   - chmod +x gradlew
 
+before_script:
+  - touch local.properties
+
 script: ./gradlew --no-daemon --parallel lintDebug testDebug
