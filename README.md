@@ -57,7 +57,7 @@ public class MyApp extends Application {
 }
 ```
 
-In your Main Application
+In your Activity
 
 ```java
 import com.droidnet.DroidListener;
