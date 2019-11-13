@@ -117,3 +117,7 @@ Please feel free to [contribute](https://github.com/JobGetabu/DroidNet/settings/
 ## Proguard
 
 You are all set.
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/JobGetabu/DroidNet.svg)](https://starchart.cc/JobGetabu/DroidNet)
