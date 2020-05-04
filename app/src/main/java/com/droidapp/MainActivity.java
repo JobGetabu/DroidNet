@@ -1,15 +1,15 @@
 package com.droidapp;
 
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.droidnet.DroidListener;
 import com.droidnet.DroidNet;
 import com.google.android.material.button.MaterialButton;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity implements DroidListener {
