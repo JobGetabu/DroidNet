@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.TransparentTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.droidapp.MainActivity">
+        <activity android:name="com.droidapp.BaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

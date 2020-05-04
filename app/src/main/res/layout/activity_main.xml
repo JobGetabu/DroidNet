@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/main_content"
-    tools:context="com.droidapp.MainActivity">
+    tools:context="com.droidapp.BaseActivity">
 
 
     <com.google.android.material.button.MaterialButton

@@ -31,6 +31,10 @@ import java.util.List;
  * Created by aa on 29/04/17.
  */
 
+/*
+* use the new [com.droidnet.new.NetworkStateHolder DroidConnectivityBroadcaster]
+* DroidNet [init] is not supported anymore
+ */
 @Deprecated
 public final class DroidNet implements NetworkChangeReceiver.NetworkChangeListener {
 

@@ -30,7 +30,7 @@ object NetworkStateHolder : NetworkState {
      * @see NetworkState
      * @see NetworkConnectivityListener
      */
-    fun Application.registerConnectivityBroadcaster() {
+    fun Application.DroidNetConnectivityBroadcaster() {
 
         holder = NetworkStateImp()
 
