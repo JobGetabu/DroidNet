@@ -7,8 +7,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.droidnet.DroidListener;
-import com.droidnet.DroidNet;
+import com.droidnet.old.DroidListener;
+import com.droidnet.old.DroidNet;
 import com.google.android.material.button.MaterialButton;
 
 

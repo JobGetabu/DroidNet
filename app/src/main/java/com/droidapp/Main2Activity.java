@@ -3,10 +3,10 @@ package com.droidapp;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.droidnet.DroidListener;
-import com.droidnet.DroidNet;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.droidnet.old.DroidListener;
+import com.droidnet.old.DroidNet;
 
 
 public class Main2Activity extends AppCompatActivity implements DroidListener {

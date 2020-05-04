@@ -2,7 +2,7 @@ package com.droidapp;
 
 import android.app.Application;
 
-import com.droidnet.DroidNet;
+import com.droidnet.old.DroidNet;
 
 /**
  * Created by aa on 29/04/17.
