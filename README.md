@@ -38,7 +38,7 @@ That's it, you have set up the required permissions and ready to go!
 In your Main Application
 
 ```java
-import com.droidnet.DroidNet;
+import com.droidnet.old.DroidNet;
 ...
 
 
@@ -60,8 +60,8 @@ public class MyApp extends Application {
 In your Activity
 
 ```java
-import com.droidnet.DroidListener;
-import com.droidnet.DroidNet;
+import com.droidnet.old.DroidListener;
+import com.droidnet.old.DroidNet;
 ...
 
 
