@@ -17,12 +17,13 @@
  * under the License.
  */
 
-package com.droidnet;
+package com.droidnet.old;
 
 /**
  * Created by aa on 29/04/17.
  */
 
+@Deprecated
 public interface DroidListener {
 
     void onInternetConnectivityChanged(boolean isConnected);

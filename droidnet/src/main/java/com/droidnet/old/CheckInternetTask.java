@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.droidnet;
+package com.droidnet.old;
 
 import android.os.AsyncTask;
 
@@ -30,6 +30,7 @@ import java.net.URL;
 
 
 //this async task tries to create a socket connection with google.com. If succeeds then return true otherwise false
+@Deprecated
 class CheckInternetTask extends AsyncTask<Void, Void, Boolean> {
 
     private WeakReference<TaskFinished<Boolean>> mCallbackWeakReference;

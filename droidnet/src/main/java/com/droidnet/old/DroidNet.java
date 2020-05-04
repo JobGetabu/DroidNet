@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package com.droidnet;
+package com.droidnet.old;
 
 import android.content.Context;
 import android.content.IntentFilter;
@@ -31,6 +31,7 @@ import java.util.List;
  * Created by aa on 29/04/17.
  */
 
+@Deprecated
 public final class DroidNet implements NetworkChangeReceiver.NetworkChangeListener {
 
     private static final Object LOCK = new Object();
