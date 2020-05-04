@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import com.droidnet.new.Event
 import com.droidnet.new.NetworkConnectivityListener
 import com.google.android.material.button.MaterialButton
@@ -44,14 +45,14 @@ class BaseActivity : AppCompatActivity(), NetworkConnectivityListener {
     }
 
     private fun netIsOn() {
-        main!!.setBackgroundColor(resources.getColor(R.color.online))
+        main!!.setBackgroundColor(ContextCompat.getColor(this,R.color.online))
         txt!!.text = "Connected"
-        txt!!.setTextColor(resources.getColor(R.color.green))
+        txt!!.setTextColor(ContextCompat.getColor(this,R.color.green))
     }
 
     private fun netIsOff() {
-        main!!.setBackgroundColor(resources.getColor(R.color.offline))
-        txt!!.setTextColor(resources.getColor(R.color.dark))
+        main!!.setBackgroundColor(ContextCompat.getColor(this,R.color.offline))
+        txt!!.setTextColor(ContextCompat.getColor(this,R.color.dark))
         txt!!.text = "DisConnected"
     }
 }
