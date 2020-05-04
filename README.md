@@ -121,3 +121,10 @@ You are all set.
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/JobGetabu/DroidNet.svg)](https://starchart.cc/JobGetabu/DroidNet)
+
+
+### TODO
+- [ ] add kotlin support
+- [ ] use lifecycle aware components
+- [ ] livedata
+- [ ] android Q and latest permissions
