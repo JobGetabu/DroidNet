@@ -7,7 +7,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.droidnet.new.Event
 import com.droidnet.new.NetworkConnectivityListener
-import com.droidnet.new.NetworkEvents
+import com.droidnet.new.DroidNetEvents
 import com.droidnet.new.NetworkState
 
 internal object Constants {
@@ -16,7 +16,7 @@ internal object Constants {
 
 internal fun NetworkConnectivityListener.onListenerCreated() {
 
-    NetworkEvents.observe(this as LifecycleOwner, Observer {
+    DroidNetEvents.observe(this as LifecycleOwner, Observer {
         if (previousState != null)
             networkConnectivityChanged(it)
     })

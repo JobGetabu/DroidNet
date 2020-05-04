@@ -4,7 +4,7 @@ import android.net.LinkProperties
 import android.net.Network
 import android.net.NetworkCapabilities
 import com.droidnet.new.Event
-import com.droidnet.new.NetworkEvents
+import com.droidnet.new.DroidNetEvents
 import com.droidnet.new.NetworkState
 
 /**
@@ -15,7 +15,7 @@ internal class NetworkStateImp : NetworkState {
     override var isConnected: Boolean = false
         set(value) {
             field = value
-            NetworkEvents.notify(
+            DroidNetEvents.notify(
                 Event.ConnectivityEvent(
                     this
                 )
@@ -28,7 +28,7 @@ internal class NetworkStateImp : NetworkState {
         set(value) {
             val old = field
             field = value
-            NetworkEvents.notify(
+            DroidNetEvents.notify(
                 Event.LinkPropertyChangeEvent(
                     this,
                     old
@@ -40,7 +40,7 @@ internal class NetworkStateImp : NetworkState {
         set(value) {
             val old = field
             field = value
-            NetworkEvents.notify(
+            DroidNetEvents.notify(
                 Event.NetworkCapabilityEvent(
                     this,
                     old

@@ -7,7 +7,7 @@ import android.net.NetworkCapabilities
 /**
  * Enables synchronous and asynchronous connectivity state checking thanks to LiveData and stored states.
  * @see isConnected to get the instance connectivity state
- * @see NetworkEvents to observe connectivity changes
+ * @see DroidNetEvents to observe connectivity changes
  */
 interface NetworkState {
 

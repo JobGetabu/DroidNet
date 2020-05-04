@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.droidnet.new.Event
-import com.droidnet.new.NetworkEvents
+import com.droidnet.new.DroidNetEvents
 import com.droidnet.new.NetworkState
 import com.droidnet.new.NetworkStateHolder
 
@@ -19,7 +19,7 @@ class Main2Activity : AppCompatActivity() {
         mTvStatus = findViewById(R.id.tv_status)
 
 
-        NetworkEvents.observe(this, Observer {
+        DroidNetEvents.observe(this, Observer {
             if (it is Event.ConnectivityEvent)
                 handleConnectivityChange(it.state)
         })
