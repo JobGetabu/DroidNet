@@ -33,5 +33,4 @@ dependencies {
     //droidnet
     implementation project(':droidnet')
 
-
 }
