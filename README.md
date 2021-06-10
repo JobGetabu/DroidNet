@@ -1,4 +1,5 @@
-# DroidNet [ ![Download](https://api.bintray.com/packages/jobgetabu/maven/droidnet/images/download.svg) ](https://bintray.com/jobgetabu/maven/droidnet/_latestVersion)  [![Build Status](https://travis-ci.org/JobGetabu/DroidNet.svg?branch=master)](https://travis-ci.org/JobGetabu/DroidNet)  [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FJobGetabu%2FDroidNet.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FJobGetabu%2FDroidNet?ref=badge_shield)  [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](LICENSE.md)
+# DroidNet [![](https://jitpack.io/v/JobGetabu/DroidNet.svg)](https://jitpack.io/#JobGetabu/DroidNet)
+  [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FJobGetabu%2FDroidNet.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FJobGetabu%2FDroidNet?ref=badge_shield)  [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](LICENSE.md)
 DroidNet is an Android Networking Library listening for network connection state and Internet connectivity with assumption that active internet connection or not. Connecting to a network doesn’t necessarily mean that device has active internet connection 
 
 ### Spread Some :heart:
@@ -15,14 +16,14 @@ To be able to use the following library, you will need to add the following grad
 
 ```
  repositories {
-        jcenter()
+        maven { url 'https://jitpack.io' }
     }
 ```
 
 #### build.gradle  module
 
 ```
-implementation 'com.job:droidnet:2.0.0'
+implementation 'com.github.JobGetabu:DroidNet:v2.0.0'
 ```
 That is the basic set up needed to be able to use the library in your applications!
 
